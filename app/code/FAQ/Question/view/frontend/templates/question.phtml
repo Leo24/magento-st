@@ -1,0 +1,31 @@
+<?php
+/**
+ * Copyright © 2016 FAQNext Ltd. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+?>
+
+<?php
+/**
+ * @var $block \FAQ\Question\Block\Question
+ */
+?>
+<div class="FAQ-Question">
+    <h2><?php echo __('This is a Question extension!') ?></h2>
+    <!-- See a sample model -->
+    <?php \Zend_Debug::dump($block->getQuestionModel()->getData()); ?>
+    <!-- See a sample collection -->
+    <?php \Zend_Debug::dump($block->getItems()->getData()); ?>
+
+    <!-- See a sample collection iteration -->
+    <?php $items = $block->getItems(); ?>
+    <?php if ($items->getSize()) : ?>
+        <?php foreach ($items as $item) : ?>
+            <h3><?php echo $block->stripTags($item->getName()) ?></h3>
+            <p>
+                <span><?php echo __('Email:'); ?></span>&nbsp;
+                <span><?php echo $item->getEmail() ?></span>
+            </p>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
