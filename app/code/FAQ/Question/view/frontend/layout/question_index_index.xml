@@ -11,7 +11,7 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="FAQ\Question\Block\Question" name="QuestionPage" template="FAQ_Question::Question.phtml" />
+            <block class="FAQ\Question\Block\Question" name="QuestionPage" template="FAQ_Question::question.phtml" />
         </referenceContainer>
     </body>
 </page>

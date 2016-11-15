@@ -115,4 +115,18 @@ class Question extends Template
     {
         return [\FAQ\Question\Model\Question::CACHE_TAG . '_' . $this->getQuestionModel()->getId()];
     }
+
+
+
+    /**
+     * Returns action url for contact form
+     *
+     * @return string
+     */
+    public function getFormAction()
+    {
+        return $this->getUrl('question/index/post', ['_secure' => true]);
+    }
+
+
 }
