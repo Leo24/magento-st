@@ -86,10 +86,13 @@ class Question extends Template
             $this->items = $this->itemCollectionFactory->create()->addFieldToSelect(
                 '*'
             )->addFieldToFilter(
-                'is_active',
+                'frontend',
+                ['eq' => \FAQ\Question\Model\Question::STATUS_ENABLED]
+            )->addFieldToFilter(
+                'status',
                 ['eq' => \FAQ\Question\Model\Question::STATUS_ENABLED]
             )->setOrder(
-                'creation_time',
+                'id',
                 'desc'
             );
         }

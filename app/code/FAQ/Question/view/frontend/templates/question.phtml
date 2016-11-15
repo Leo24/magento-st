@@ -12,23 +12,49 @@
 ?>
 <div class="FAQ-Question">
     <h2><?php echo __('This is a Frequently Asked Questions page') ?></h2>
-    <!-- See a sample model -->
-<!--    --><?php //\Zend_Debug::dump($block->getQuestionModel()->getData()); ?>
-    <!-- See a sample collection -->
-<!--    --><?php //\Zend_Debug::dump($block->getItems()->getData()); ?>
-<!---->
-    <!-- See a sample collection iteration -->
-<!--    --><?php //$items = $block->getItems(); ?>
-<!--    --><?php //if ($items->getSize()) : ?>
-<!--        --><?php //foreach ($items as $item) : ?>
-<!--            <h3>--><?php //echo $block->stripTags($item->getName()) ?><!--</h3>-->
-<!--            <p>-->
-<!--                <span>--><?php //echo __('Email:'); ?><!--</span>&nbsp;-->
-<!--                <span>--><?php //echo $item->getEmail() ?><!--</span>-->
-<!--            </p>-->
-<!--        --><?php //endforeach; ?>
-<!--    --><?php //endif; ?>
 </div>
+
+<div id="questions">
+    <?php $items = $block->getItems(); ?>
+    <?php if ($items->getSize()) : ?>
+        <?php foreach ($items as $item) : ?>
+            <div data-role="collapsible">
+                <div data-role="trigger">
+                    <span><?php echo $item->getTheme()?></span>
+                </div>
+            </div>
+            <div data-role="content">
+                <p class="name">
+                    <span><?php echo __('Name:'); ?></span>&nbsp;
+                    <span><?php echo $item->getName()?></span>
+                </p>
+                <p class="email">
+                    <span><?php echo __('Email:'); ?></span>&nbsp;
+                    <span><?php echo $item->getEmail()?></span>
+                </p>
+                <p class="created">
+                    <span><?php echo __('Created:'); ?></span>&nbsp;
+                    <span><?php echo $item->getCreationTime()?></span>
+                </p>
+                <p class="question">
+                    <span><?php echo __('Question:'); ?></span>&nbsp;
+                    <span><?php echo $item->getQuestion()?></span>
+                </p>
+                <p class="answer">
+                    <span><?php echo __('Answer:'); ?></span>&nbsp;
+                    <span><?php echo $item->getAnswer()?></span>
+                </p>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+</div>
+
+
+
+
+
+
+
 
 <form class="form contact"
       action="<?php echo $block->escapeUrl($block->getFormAction()); ?>"
@@ -74,3 +100,11 @@
         </div>
     </div>
 </form>
+
+<script>
+    require([
+        'jquery',
+        'tabs'], function ($) {
+        $("#questions").accordion();
+    });
+</script>

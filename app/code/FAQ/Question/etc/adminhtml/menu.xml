@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2016 AionNext Ltd. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="FAQ_Question::content_elements" title="FAQ Questions" module="Magento_Backend" sortOrder="11" parent="Magento_Backend::content"
+             resource="Magento_Backend::content_elements"/>
+        <add id="Faq_Question::faq_question" title="Manage Questions" module="FAQ_Question" sortOrder="11" parent="FAQ_Question::content_elements" action="question/question"
+             resource="FAQ_Question::question"/>
+    </menu>
+</config>
