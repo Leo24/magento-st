@@ -39,6 +39,27 @@ class Save extends \FAQ\Question\Controller\Adminhtml\Question
                 // clear previously saved data from session
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
 
+                //send mail about question answer
+                $transport = $this->_transportBuilder
+                    ->setTemplateIdentifier($this->scopeConfig->getValue(self::XML_PATH_EMAIL_TEMPLATE, $storeScope))
+                    ->setTemplateOptions(
+                        [
+                            'area' => \Magento\Backend\App\Area\FrontNameResolver::AREA_CODE,
+                            'store' => \Magento\Store\Model\Store::DEFAULT_STORE_ID,
+                        ]
+                    )
+                    ->setTemplateVars(['data' => $model])
+                    ->setFrom($this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope))
+                    ->addTo($this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, $storeScope))
+                    ->setReplyTo($model->getEmail())
+                    ->getTransport();
+
+                $transport->sendMessage();
+
+
+
+
+
                 // check if 'Save and Continue'
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['id' => $model->getId()]);
