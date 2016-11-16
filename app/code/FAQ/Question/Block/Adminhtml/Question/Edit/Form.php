@@ -6,7 +6,7 @@
 namespace FAQ\Question\Block\Adminhtml\Question\Edit;
 
 /**
- * Adminhtml Aion item edit form
+ * Adminhtml FAQ item edit form
  */
 class Form extends \Magento\Backend\Block\Widget\Form\Generic
 {
@@ -60,7 +60,7 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
      */
     protected function _prepareForm()
     {
-        $model = $this->_coreRegistry->registry('test_item');
+        $model = $this->_coreRegistry->registry('question_item');
 
         /** @var \Magento\Framework\Data\Form $form */
         $form = $this->_formFactory->create(
@@ -85,47 +85,60 @@ class Form extends \Magento\Backend\Block\Widget\Form\Generic
                 'name' => 'name',
                 'label' => __('Name'),
                 'title' => __('Name'),
-                'required' => true
             ]
-        );
+        )->setDisabled('disabled');
 
         $fieldset->addField(
-            'email',
+            'question',
             'text',
             [
-                'name' => 'email',
-                'label' => __('Email'),
-                'title' => __('Email'),
+                'name' => 'question',
+                'label' => __('Question'),
+                'title' => __('Question'),
+                'class' => 'validate-question'
+            ]
+        )->setDisabled('disabled');
+
+        $fieldset->addField(
+            'answer',
+            'text',
+            [
+                'name' => 'Answer',
+                'label' => __('Answer'),
+                'title' => __('Answer'),
                 'required' => true,
-                'class' => 'validate-email'
+                'class' => 'validate-answer'
             ]
         );
 
         $fieldset->addField(
-            'is_active',
+            'status',
             'select',
             [
                 'label' => __('Status'),
                 'title' => __('Status'),
                 'name' => 'is_active',
                 'required' => true,
-                'options' => ['1' => __('Enabled'), '0' => __('Disabled')]
+                'options' => ['1' => __('Viewed'), '0' => __('Not Viewed')]
             ]
         );
+
+        $fieldset->addField(
+            'show_on_frontend',
+            'select',
+            [
+                'label' => __('Show On Frontend'),
+                'title' => __('Show On Frontend'),
+                'name' => 'is_active',
+                'required' => true,
+                'options' => ['1' => __('Show'), '0' => __('Hide')]
+            ]
+        );
+
+
         if (!$model->getId()) {
             $model->setData('is_active', '1');
         }
-
-        $fieldset->addField(
-            'sort_order',
-            'text',
-            [
-                'name' => 'sort_order',
-                'label' => __('Sort Order'),
-                'title' => __('Sort Order'),
-                'required' => false
-            ]
-        );
 
         $form->setValues($model->getData());
         $form->setUseContainer(true);

@@ -20,12 +20,12 @@
         <?php foreach ($items as $item) : ?>
             <div data-role="collapsible">
                 <div data-role="trigger">
-                    <span><?php echo $item->getTheme()?></span>
+                    <h4><?php echo $item->getTheme()?></h4>
                 </div>
             </div>
             <div data-role="content">
                 <p class="name">
-                    <span><?php echo __('Name:'); ?></span>&nbsp;
+                    <span><?php echo __('Username:'); ?></span>&nbsp;
                     <span><?php echo $item->getName()?></span>
                 </p>
                 <p class="email">

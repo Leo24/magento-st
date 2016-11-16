@@ -65,7 +65,7 @@ class QuestionActions extends Column
                                     'id' => $item['id']
                                 ]
                             ),
-                            'label' => __('Edit')
+                            'label' => __('Answer Question')
                         ],
                         'delete' => [
                             'href' => $this->urlBuilder->getUrl(
@@ -74,7 +74,7 @@ class QuestionActions extends Column
                                     'id' => $item['id']
                                 ]
                             ),
-                            'label' => __('Delete'),
+                            'label' => __('Delete Question'),
                             'confirm' => [
                                 'title' => __('Delete "${ $.$data.name }"'),
                                 'message' => __('Are you sure you wan\'t to delete a "${ $.$data.name }" record?')

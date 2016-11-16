@@ -18,7 +18,7 @@ class Question extends \Magento\Backend\Block\Widget\Grid\Container
         $this->_blockGroup = 'FAQ_Question';
         $this->_controller = 'adminhtml_question';
         $this->_headerText = __('Items');
-        $this->_addButtonLabel = __('Add New Item');
+//        $this->_addButtonLabel = __('Add New Item');
         parent::_construct();
     }
 }
